@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 public class Programa {
     public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        String caminho = entrada.nextLine();
         String[] linhas = null;
         try{
 
-            linhas = lerArquivo("arquivo.txt");
+            linhas = lerArquivo(caminho);
             for(int i = 0; i < linhas.length; i++){
                 if (linhas[i] == null) break;
                 System.out.println(linhas[i]);
@@ -23,12 +25,14 @@ public class Programa {
             linhas[9] = "100 out a";
             linhas[10] = "110 out b";
             try{
-                gravaArquivo("arquivo.txt", linhas);
+                gravaArquivo(caminho, linhas);
             }
             catch (IOException e){
                 System.out.printf("Erro ao gravar arquivo: %s\n", e.getMessage());
             }
         }
+
+        entrada.close();
     }
 
     public static String[] lerArquivo(String caminho) throws IOException {
